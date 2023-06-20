@@ -15,6 +15,10 @@ function Footer() {
           <FaLinkedin></FaLinkedin>
         </a>
       </div>
+      <div className={styles.copy}>
+       <p>Costs &copy; </p> 
+      </div>
+       
     </div>
   )
 }

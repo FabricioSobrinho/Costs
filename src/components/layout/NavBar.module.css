@@ -52,6 +52,6 @@
     transform: scale(1.01);
 }
 .nav li:hover .linkRouter{
-    color: #161616;
+    color: #807500;
     transition: .5s;
 }

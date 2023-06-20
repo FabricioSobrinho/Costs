@@ -1,25 +1,32 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+// Rotas da aplicacao
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom" 
+
+//importação das páginas
 import Home from "./components/pages/Home"
 import Contato from "./components/pages/Contact"
-import Company from "./components/pages/Company"
+import Projects from "./components/pages/Projects"
+import Empresa from "./components/pages/Empresa"
 import NewProject from "./components/pages/NewProject"
 
+//Container de organização
 import Container from "./components/layout/Container"
 
+//Elementos fixos das páginas
 import NavBar from "./components/layout/NavBar"
 import Footer from "./components/layout/Footer"
 
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router> {/*Rotas da apllicação e definição de elementos fixos no site*/}
         <NavBar></NavBar>
         <Container customClass="min-height">
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/company" element={<Company />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/contato" element={<Contato />} />
-            <Route path="/newproject" element={<NewProject />} />
+            <Route path="/empresa" element={<Empresa />} />
+            <Route path="/newproject" element={<NewProject/>} />
           </Routes>
         </Container>
         <Footer></Footer>
