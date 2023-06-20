@@ -1,0 +1,39 @@
+.footer{
+    position: fixed;
+    bottom: 0;
+    background: #272727;
+    width: 100vw;
+    height: 6.5vh;
+    display: flex;
+    justify-content: center;
+}
+.footer .icons {
+    color: white;
+    font-size: 1.5em;
+    display: flex;
+}
+.footer .icons a {
+    display: flex;
+    align-items: center;
+    margin: 10%;
+}
+
+.footer .icons .FaFacebook {
+    color: #0000ff;
+}
+.footer .icons .FaInstagram {
+    color: #af0060;
+}
+.footer .icons .FaLinkedin {
+    color: #3131c5;
+}
+
+.footer .icons .FaFacebook:hover {
+    color: #7070fa;
+}
+.footer .icons .FaInstagram:hover {
+    color: #e10b81;
+}
+.footer .icons .FaLinkedin:hover {
+    color: #0000ff;
+}

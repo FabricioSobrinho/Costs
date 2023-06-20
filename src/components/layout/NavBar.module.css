@@ -1,0 +1,56 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 12.5vh;
+  background: #3f3f3f;
+}
+
+.leftNav {
+  width: 50%;
+}
+.leftNav h1 {
+    color: white;
+    margin-left: 2%;
+}
+.leftNav h1 .linkRouter {
+    text-decoration: none;
+    color: white;
+}
+.nav {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
+.nav ul {
+    width: 97%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
+.nav li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 10px;
+  border-radius: 1.5px;
+  margin: 3px;
+  transition: .3s;
+}
+
+.nav .linkRouter {
+    text-decoration: none;
+    color: white;
+    transition: .3s;
+}
+.nav li:hover{
+    background: white;
+    transition: .3s;
+    box-shadow: 5px 5px 1px black;
+}
+.nav li:hover .linkRouter{
+    color: #161616;
+    transition: .5s;
+}
