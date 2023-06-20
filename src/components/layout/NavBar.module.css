@@ -48,7 +48,8 @@
 .nav li:hover{
     background: white;
     transition: .3s;
-    box-shadow: 5px 5px 1px black;
+    box-shadow: -5px 5px 1px black;
+    transform: scale(1.01);
 }
 .nav li:hover .linkRouter{
     color: #161616;
