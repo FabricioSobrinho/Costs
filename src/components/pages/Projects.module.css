@@ -1,0 +1,19 @@
+.projectContainer {
+    height: 100%;
+    width: 100%;
+    padding: 2em;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+.projectsShow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+}
