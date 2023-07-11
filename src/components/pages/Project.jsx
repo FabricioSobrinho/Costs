@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Loader from "../layout/Loader"
 import { Container } from "reactstrap"
+import ProjectForm from "../project/ProjectForm"
+import Message from "../layout/Message"
 
 function Project() {
   const { id } = useParams()
@@ -30,6 +32,7 @@ function Project() {
   const toggleProjectForm = () => {
     setShowProjectForm(!showProjectForm)
   }
+  const [message, setMessage] = useState()
   const toFixed = (value) => {
     let stringValue = String(value)
     if (!stringValue.includes(".")) {
@@ -38,10 +41,27 @@ function Project() {
       return stringValue
     }
   }
+  const editPost = (project) => {
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: "PATCH", //metodo para atualizar os dados
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setProject(data)
+        setShowProjectForm(false)
+        setMessage("Projeto atualizado com sucesso!")
+      })
+      .catch((err) => console.log(err))
+  }
   return (
     <>
       {project.name ? (
-        <div className={styles.projectDetails}> 
+        <div className={styles.projectDetails}>
+          {message && <Message msg={message} type="success" time="3000"/>}
           <Container customClass="column">
             <div className={styles.detailsContainer}>
               <h1>{project.name} </h1>
@@ -61,7 +81,14 @@ function Project() {
                   </p>
                 </div>
               ) : (
-                <div className={styles.projectInfos}>Detalhes do projeto</div>
+                <div className={styles.projectInfos}>
+                  Detalhes do projeto
+                  <ProjectForm
+                    handleSubmit={editPost}
+                    btnText="Concluir edição"
+                    projectData={project}
+                  />
+                </div>
               )}
             </div>
           </Container>

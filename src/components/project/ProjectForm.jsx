@@ -57,7 +57,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
             value={project.name ? project.name : ""}
           />
           {!project.name && 
-          <Message type="error" msg="Insira o nome do projeto"  />
+          <Message type="error" msg="Insira o nome do projeto!" />
           }
         </div>
         <div>
@@ -69,8 +69,8 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
             handleOnChange={handleChange}
             value={project.budget ? project.budget : ""}
           />
-           {(!project.budget || project.budget <= 0) && 
-          <Message type="error" msg="Insira um orçamento válido para o projeto" />
+           {(!project.budget || project.budget <= 0 || project.budget < project.cost) && 
+          <Message type="error" msg="Insira um orçamento válido para o projeto!" />
           }
         </div>
         <div>
@@ -83,7 +83,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
           />
         </div>
         <div>
-          {project.budget && project.name && 
+          {project.budget && project.name && project.budget > project.cost &&
           <Button text={btnText} />
           }
           
