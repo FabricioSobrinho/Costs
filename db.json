@@ -7,7 +7,7 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 0,
+      "cost": 21,
       "services": [],
       "id": 1
     },
@@ -28,17 +28,6 @@
       "cost": 0,
       "services": [],
       "id": 3
-    },
-    {
-      "name": "Ponte",
-      "budget": "21000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 4
     },
     {
       "name": "Embarco no próximo voo",

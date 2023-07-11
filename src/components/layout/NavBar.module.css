@@ -4,6 +4,7 @@
   width: 100vw;
   height: 12.5vh;
   background: #3f3f3f;
+  box-shadow: 0px 1px 10px black;
 }
 
 .leftNav {
