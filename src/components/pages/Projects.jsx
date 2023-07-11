@@ -68,7 +68,7 @@ function Projects() {
         <LinkButton to="/newproject" text="Criar projeto" />
       </div>
 
-      {message && <Message msg={message} type="success" />}
+      {message && <Message msg={message} type="success" time="3000"/>}
       {projectMessage && <Message msg={projectMessage} type="success" />}
 
       <Container customClass="start">

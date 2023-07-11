@@ -5,6 +5,7 @@ import Select from "../form/Select"
 import Button from "../form/Button"
 
 import { useState, useEffect } from "react"
+import Message from "../layout/Message"
 
 function ProjectForm({ btnText, handleSubmit, projectData }) {
   const [categories, setCategories] = useState([])
@@ -55,6 +56,9 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
             handleOnChange={handleChange}
             value={project.name ? project.name : ""}
           />
+          {!project.name && 
+          <Message type="error" msg="Insira o nome do projeto"  />
+          }
         </div>
         <div>
           <Input
@@ -65,6 +69,9 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
             handleOnChange={handleChange}
             value={project.budget ? project.budget : ""}
           />
+           {(!project.budget || project.budget <= 0) && 
+          <Message type="error" msg="Insira um orçamento válido para o projeto" />
+          }
         </div>
         <div>
           <Select
@@ -76,7 +83,10 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
           />
         </div>
         <div>
+          {project.budget && project.name && 
           <Button text={btnText} />
+          }
+          
         </div>
       </form>
     </div>
