@@ -8,12 +8,19 @@ import Loader from "../layout/Loader"
 import { Container } from "reactstrap"
 import ProjectForm from "../project/ProjectForm"
 import Message from "../layout/Message"
+import ServiceForm from "../services/ServiceForm"
+import { parse, v4 as uuidv4 } from "uuid"
 
 function Project() {
   const { id } = useParams()
   const [project, setProject] = useState({})
 
   const [showProjectForm, setShowProjectForm] = useState(false)
+  const [showServiceForm, setShowServiceForm] = useState(false)
+
+  const [message, setMessage] = useState()
+  const [type, setType] = useState()
+
 
   useEffect(() => {
     fetch(`http://localhost:5000/projects/${id}`, {
@@ -32,7 +39,43 @@ function Project() {
   const toggleProjectForm = () => {
     setShowProjectForm(!showProjectForm)
   }
-  const [message, setMessage] = useState()
+  const toggleServiceForm = () => {
+    setShowServiceForm(!showServiceForm)
+  }
+  const createService = () => {
+    setMessage('')
+    setType('')
+
+    const lastService = project.services[project.services.length - 1]
+    lastService.id = uuidv4()
+
+
+
+    const lastServiceCost = lastService.cost
+    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+    if (newCost > parseFloat(project.budget)) {
+      project.services.pop()
+      return false
+    } 
+    project.cost = newCost
+
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data)
+        setMessage("Serviço adicionado com sucesso!")
+        setType('success')
+      })
+      .catch((err) => console.log(err))
+  }
+
   const toFixed = (value) => {
     let stringValue = String(value)
     if (!stringValue.includes(".")) {
@@ -41,7 +84,9 @@ function Project() {
       return stringValue
     }
   }
+
   const editPost = (project) => {
+    setMessage("")
     fetch(`http://localhost:5000/projects/${id}`, {
       method: "PATCH", //metodo para atualizar os dados
       headers: {
@@ -54,14 +99,16 @@ function Project() {
         setProject(data)
         setShowProjectForm(false)
         setMessage("Projeto atualizado com sucesso!")
+        setType("success")
       })
       .catch((err) => console.log(err))
   }
+
   return (
     <>
       {project.name ? (
         <div className={styles.projectDetails}>
-          {message && <Message msg={message} type="success" time="3000"/>}
+          {message && <Message msg={message} type={type} time="3000" />}
           <Container customClass="column">
             <div className={styles.detailsContainer}>
               <h1>{project.name} </h1>
@@ -71,13 +118,19 @@ function Project() {
               {!showProjectForm ? (
                 <div className={styles.projectInfos}>
                   <p>
-                    <span>Categoria: </span> {project.category.name}
+                    <span>Categoria: </span>{" "}
+                    {project.category
+                      ? project.category.name
+                      : "Categoria indefinida"}
                   </p>
                   <p>
                     <span>Orçamento total: </span> R${toFixed(project.budget)}
                   </p>
                   <p>
                     <span>Orçamento Utilizado: </span> R${toFixed(project.cost)}
+                  </p>
+                  <p>
+                    <span>Orçamento disponível: </span> R${toFixed(project.budget - project.cost)}
                   </p>
                 </div>
               ) : (
@@ -91,6 +144,26 @@ function Project() {
                 </div>
               )}
             </div>
+            <div className={styles.serviceFormContainer}>
+              <h2>Adicione o serviço</h2>
+              <button className={styles.btn} onClick={toggleServiceForm}>
+                {!showServiceForm ? "Adicionar serviço" : "Fechar"}
+              </button>
+              <div className={styles.projectInfos}>
+                {showServiceForm && (
+                  <ServiceForm
+                    handleSubmit={createService}
+                    btnText="Adicionar serviço"
+                    projectData={project}
+                    maxValueService={project.budget}
+                  />
+                )}
+              </div>
+            </div>
+            <h2>Serviços</h2>
+            <Container customClass="start">
+              <p>Itens de serviço</p>
+            </Container>
           </Container>
         </div>
       ) : (

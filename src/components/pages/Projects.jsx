@@ -41,6 +41,7 @@ function Projects() {
   }, [])
 
   function removeProject(id) {
+    setProjectMessage('')
     fetch(`http://localhost:5000/projects/${id}`, {
       method: "delete",
       headers: {
@@ -55,6 +56,7 @@ function Projects() {
           })
         )
         setProjectMessage("Projeto removido com sucesso!")
+        Location.reload(true) 
       })
       .catch((err) => {
         console.log(err)
@@ -69,7 +71,7 @@ function Projects() {
       </div>
 
       {message && <Message msg={message} type="success" time="3000"/>}
-      {projectMessage && <Message msg={projectMessage} type="success" />}
+      {projectMessage && <Message msg={projectMessage} type="success" time="3000" />}
 
       <Container customClass="start">
         <div className={styles.projectsShow}>

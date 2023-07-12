@@ -10,7 +10,7 @@ function Select({ text, name, options, handleOnChange, value }) {
         value={value || ""}
       >
         {text}
-        <option>Selecione uma opção</option>
+        <option>Categoria indefinida</option>
         {options.map((option) => (
           <option value={option.id} key={option.id}>
             {option.name}

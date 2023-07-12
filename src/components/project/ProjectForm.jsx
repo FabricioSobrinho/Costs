@@ -11,11 +11,12 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
   const [categories, setCategories] = useState([])
   const [project, setProject] = useState(projectData || {})
 
+  const [visible, setVisible] = useState()
   useEffect(() => {
     fetch("http://localhost:5000/categories", {
       method: "GET",
       headers: {
-        "Content-Type" : "application/json",
+        "Content-Type": "application/json",
       },
     })
       .then((resp) => resp.json()) // Adicionado o retorno da resposta json()
@@ -34,6 +35,9 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
 
   function handleChange(e) {
     setProject({ ...project, [e.target.name]: e.target.value })
+    if (e.target.type === "number") {
+      e.target.value >= project.cost ? setVisible(true) : setVisible(false)
+    }
   }
   function handleCategory(e) {
     setProject({
@@ -44,6 +48,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
       },
     })
   }
+
   return (
     <div>
       <form className={styles.form} onSubmit={submit}>
@@ -56,22 +61,34 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
             handleOnChange={handleChange}
             value={project.name ? project.name : ""}
           />
-          {!project.name && 
-          <Message type="error" msg="Insira o nome do projeto!" />
-          }
+          {!project.name && (
+            <Message type="error" msg="Insira o nome do projeto!" />
+          )}
         </div>
         <div>
           <Input
             type="Number"
-            text="Orçamento do projeto"
+            text={"Orçamento do projeto"}
             placeholder="Orçamento projeto"
             name="budget"
             handleOnChange={handleChange}
             value={project.budget ? project.budget : ""}
           />
-           {(!project.budget || project.budget <= 0 || project.budget < project.cost) && 
-          <Message type="error" msg="Insira um orçamento válido para o projeto!" />
-          }
+
+          {(!project.budget || project.budget < project.cost) &&
+          project.budget < project.cost ? (
+            <Message
+              msg={`O Valor do orçamento total não pode ser inferior aos custos: R$${project.cost}!`}
+              type="error"
+            />
+          ) : !project.budget || project.budget < project.cost ? (
+            <Message
+              msg={`Insira um orçamento válido para o projeto!`}
+              type="error"
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <div>
           <Select
@@ -83,10 +100,17 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
           />
         </div>
         <div>
-          {project.budget && project.name && project.budget > project.cost &&
-          <Button text={btnText} />
-          }
-          
+          {project.budget && project.name && !project.cost ? (
+            <Button text={btnText} />
+          ) : visible ? (
+            project.name ? (
+              <Button text={btnText} />
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )}
         </div>
       </form>
     </div>

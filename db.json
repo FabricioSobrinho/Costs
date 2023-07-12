@@ -7,26 +7,46 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 21,
-      "services": [],
+      "cost": 1000,
+      "services": [
+        {
+          "name": "Elaboração de projeto",
+          "cost": "1000",
+          "description": "Consulta sobre a viabilidade da construção da ponte.",
+          "id": "45263232-fca1-43ab-b1fa-76ae0b54314f"
+        }
+      ],
       "id": 1
     },
     {
       "budget": "21000",
       "name": "Ponte baixa",
-      "cost": 0,
+      "cost": 47,
       "services": [],
       "id": 2
     },
     {
-      "name": "Ponte Média",
-      "budget": "12000",
+      "name": "Lhe faz bem",
+      "budget": "33432",
       "category": {
         "id": "1",
         "name": "Infra"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 2174,
+      "services": [
+        {
+          "cost": "21",
+          "name": "testando tratamento ",
+          "description": "testando ",
+          "id": "343e3ff1-474c-4c91-8da6-25b1613455fc"
+        },
+        {
+          "cost": "2100",
+          "name": "Desenvolvimento de planta",
+          "description": "Contratação de um arquiteto para planejamento de projeto",
+          "id": "c9307046-6cd7-4fc4-92fa-052fc9f53a34"
+        }
+      ],
       "id": 3
     },
     {
@@ -39,20 +59,27 @@
       "cost": 0,
       "services": [],
       "id": 5
+    },
+    {
+      "budget": "21",
+      "name": "nome",
+      "cost": 0,
+      "services": [],
+      "id": 6
     }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Infra"
-    },
-    {
-      "id": 2,
       "name": "Desenvolvimento"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Design"
+    },
+    {
+      "id": 3,
+      "name": "Infra"
     },
     {
       "id": 4,

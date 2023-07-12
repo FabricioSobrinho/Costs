@@ -23,7 +23,6 @@ function NewProject() {
         console.log(data)
         //redirect
         history('/projects', { state: { message: 'Projeto criado com sucesso!' } })
-
       })
       .catch((err) => console.log(err))
   }
@@ -32,6 +31,7 @@ function NewProject() {
     <div className={styles.newProjectContainer}>
       <h1>Criar projeto</h1>
       <p>Crie seu projeto para depois adicionar os serviços</p>
+
       <ProjectForm btnText="Criar projeto" handleSubmit={createPost} />
     </div>
   )
