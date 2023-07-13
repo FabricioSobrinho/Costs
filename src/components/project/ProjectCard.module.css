@@ -2,8 +2,10 @@
     padding: 1em;
     border: 1px solid #000000;
     border-radius: 5px;
+    min-height: 42.5vh;
     width: 24%;
     margin: 0.5%;
+    object-fit: contain;
 }
 .projectCard h4 {
     background-color: #222;
@@ -45,10 +47,15 @@
 .categoryText .planejamento {
     background-color: #fbe7c6;
 }
-
+.projectCard .projectCardActions {
+    display: flex;
+    align-items: flex-end;
+}
 .projectCardActions {
+    flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-top: 1.2em;
 }
 

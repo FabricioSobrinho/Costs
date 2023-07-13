@@ -50,7 +50,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
   }
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <form className={styles.form} onSubmit={submit}>
         <div>
           <Input

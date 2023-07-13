@@ -10,3 +10,7 @@
 .newProjectContainer p {
     color: #393939;
 }
+.formContainer {
+    display: flex;
+    justify-content: center;
+}

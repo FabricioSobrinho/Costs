@@ -68,7 +68,7 @@ function ServiceForm({ btnText, handleSubmit, projectData }) {
       {name !== "" && cost !== "" && description !== "" ? (
         <Button text={btnText} />
       ) : (
-        <Message type="error" msg="Insira todos os campos." />
+        <Message type="error" msg="Preencha todos os campos." />
       )}
     </form>
   )

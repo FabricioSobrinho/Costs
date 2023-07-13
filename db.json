@@ -32,7 +32,7 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 2174,
+      "cost": 4324,
       "services": [
         {
           "cost": "21",
@@ -45,6 +45,12 @@
           "name": "Desenvolvimento de planta",
           "description": "Contratação de um arquiteto para planejamento de projeto",
           "id": "c9307046-6cd7-4fc4-92fa-052fc9f53a34"
+        },
+        {
+          "name": "Serviço para testar a implementação dos cards",
+          "cost": "2121",
+          "description": "Estou testando a implementação da função de visualizar serviços no costs.",
+          "id": "59c60edb-9452-41c5-b85b-738f9305e709"
         }
       ],
       "id": 3

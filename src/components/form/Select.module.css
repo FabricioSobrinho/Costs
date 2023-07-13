@@ -1,6 +1,7 @@
 .formControl {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-bottom: 1em;
 }
 .formControl label {
@@ -8,6 +9,7 @@
     font-weight: bold;
 }
 .formControl select {
+    width: 40%;
     padding: 0.7em;
     border-radius: 0;
     border: none;
