@@ -4,7 +4,9 @@ O Costs é um gerenciador de projetos feito em react que simula o consumo de uma
 `O Costs é inteiramente feito em react utilizando algumas dependencias, são elas: `
 
 *[React-Router-Dom]* -> Permite a navegação entre as páginas
+
 *[React-Icons]* -> Oferece uma biblioteca com diversos ícones para serem utilizados no front-end do projeto
+
 *[uuid]* -> Gera ID's de identificação para elementos, útil para a organização de informações no back-end
 
 # Página inicial
