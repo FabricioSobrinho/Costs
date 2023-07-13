@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom"
 import styles from "./NavBar.module.css"
-
+import { HiMenu } from "react-icons/hi"
 import Container from "./Container"
 
+import { useRef } from "react"
+
 function NavBar() {
+  const menuMobile = useRef()
+  const closeMenuButton = useRef()
+
+  const toggleMenu = () => {
+    menuMobile.current.style.display === "none"
+      ? (menuMobile.current.style.display = "flex")
+      : (menuMobile.current.style.display = "flex")
+  }
+  const closeMenu = () => {
+    menuMobile.current.style.display = "none"
+  }
   return (
     <div className={styles.navBar}>
       <Container>
@@ -39,9 +52,11 @@ function NavBar() {
             </li>
           </ul>
         </nav>
-
-        <div className={styles.navMobileMenu}>
-        <ul>
+        <div className={styles.openMenu} onClick={toggleMenu}>
+          <HiMenu />
+        </div>
+        <div className={styles.navMobileMenu} ref={menuMobile}>
+          <ul>
             <li>
               <Link to="/" className={styles.linkRouter}>
                 Home
@@ -63,6 +78,7 @@ function NavBar() {
               </Link>
             </li>
           </ul>
+          <div className={styles.closeMobileMenu} ref={closeMenuButton} onClick={closeMenu}>X</div>
         </div>
       </Container>
     </div>
