@@ -42,11 +42,13 @@ function Project() {
 
   const toggleProjectForm = () => {
     setShowProjectForm(!showProjectForm)
-    setShowServiceForm(showServiceForm)
+    showProjectForm === showServiceForm ? setShowServiceForm(showServiceForm): setShowServiceForm(!showServiceForm)
+    
   }
   const toggleServiceForm = () => {
     setShowServiceForm(!showServiceForm)
-    setShowProjectForm(showProjectForm)
+    showServiceForm === showProjectForm ? setShowProjectForm(showProjectForm) : setShowProjectForm(!showProjectForm)
+    
   }
   const createService = () => {
     setMessage("")
