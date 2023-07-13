@@ -56,3 +56,35 @@
     color: #807500;
     transition: .5s;
 }
+
+@media (max-width: 600px) {
+  .nav {
+    display: none;
+  }
+  .navMobileMenu {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 40vh;
+    background: #333333;
+    padding: 2%;
+  }
+  .navMobileMenu li{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    list-style: none;
+    margin: 1%;
+  }
+  .linkRouter {
+    background: #a0a0a0;
+    padding: 10px 100%;
+    text-decoration: none;
+    color: #f0f8ff;
+  }
+  .linkRouter:hover {
+    background: #3f3f3f;
+  }
+}

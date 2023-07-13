@@ -39,6 +39,31 @@ function NavBar() {
             </li>
           </ul>
         </nav>
+
+        <div className={styles.navMobileMenu}>
+        <ul>
+            <li>
+              <Link to="/" className={styles.linkRouter}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/projects" className={styles.linkRouter}>
+                Projetos
+              </Link>
+            </li>
+            <li>
+              <Link to="/contato" className={styles.linkRouter}>
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link to="/empresa" className={styles.linkRouter}>
+                Empresa
+              </Link>
+            </li>
+          </ul>
+        </div>
       </Container>
     </div>
   )

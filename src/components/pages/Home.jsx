@@ -2,7 +2,6 @@ import styles from "./Home.module.css"
 import savings from "../../images/savings.svg"
 import LinkButton from "../layout/LinkButton"
 
-
 function Home() {
   return (
     <section className={styles.homeContainer}>

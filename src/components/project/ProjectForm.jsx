@@ -11,7 +11,8 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
   const [categories, setCategories] = useState([])
   const [project, setProject] = useState(projectData || {})
 
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
+
   useEffect(() => {
     fetch("http://localhost:5000/categories", {
       method: "GET",
@@ -81,7 +82,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
               msg={`O Valor do orçamento total não pode ser inferior aos custos: R$${project.cost}!`}
               type="error"
             />
-          ) : !project.budget || project.budget < project.cost ? (
+          ) : !project.budget || project.budget < project.cost || project.budget < 0 ? (
             <Message
               msg={`Insira um orçamento válido para o projeto!`}
               type="error"

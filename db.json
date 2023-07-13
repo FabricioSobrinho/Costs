@@ -7,8 +7,15 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 2332,
-      "services": [],
+      "cost": 5545,
+      "services": [
+        {
+          "nameService": "Elaboração do desenho do projeto",
+          "cost": "3213",
+          "description": "Contratção de um arquiteto para elaborar o desenho da ponte",
+          "id": "14cc8423-a6c5-4c8c-bffd-a33218584ccc"
+        }
+      ],
       "id": 1
     },
     {
@@ -19,49 +26,33 @@
       "id": 2
     },
     {
-      "name": "Lhe faz bem",
-      "budget": "33432",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 7982,
-      "services": [
-        {
-          "nameService": "Eu sei eu sei",
-          "cost": "52",
-          "description": "Sou eu sou eu sou eu sou eu ",
-          "id": "3265c644-c648-4362-b93d-fe7e81588b35"
-        },
-        {
-          "nameService": "Correção de bugs",
-          "cost": "1221",
-          "description": "Correção de bugs na plataforma costs",
-          "id": "3c8d6d91-059d-48dd-9682-cf3870a6ee01"
-        },
-        {
-          "nameService": "Implementação de features",
-          "cost": "2342",
-          "description": "O Serviço adicionou funcionalidades que antes não havia no costs",
-          "id": "c2d16462-8fad-4839-995a-5259e5a16c97"
-        }
-      ],
+      "name": "Ponte A",
+      "budget": "3231",
+      "cost": 0,
+      "services": [],
       "id": 3
     },
     {
-      "name": "Embarco no próximo voo",
-      "budget": "21",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
+      "budget": "2312",
+      "name": "weqe",
+      "cost": 0,
+      "services": [],
+      "id": 4
+    },
+    {
+      "name": "Testando solução",
+      "budget": "98989",
       "cost": 0,
       "services": [],
       "id": 5
     },
     {
-      "budget": "21",
-      "name": "nome",
+      "name": "Fabrício Araújo Sobrinho que foi bloqueaado",
+      "budget": "213322",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
       "cost": 0,
       "services": [],
       "id": 6

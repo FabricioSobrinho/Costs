@@ -1,4 +1,8 @@
 .projectContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
     height: 100%;
     width: 100%;
@@ -8,11 +12,12 @@
 .titleContainer {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     margin-bottom: 2em;
 }
 .projectsShow {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
