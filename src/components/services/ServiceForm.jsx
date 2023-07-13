@@ -18,13 +18,13 @@ function ServiceForm({ btnText, handleSubmit, projectData }) {
     projectData.services.push(service)
     handleSubmit(projectData)
 
-    document.querySelector("#name").value = ""
+    document.querySelector("#nameService").value = ""
     document.querySelector("#cost").value = ""
     document.querySelector("#description").value = ""
   }
 
   const handleChange = (e) => {
-    setName(document.querySelector("#name").value)
+    setName(document.querySelector("#nameService").value)
     setCost(document.querySelector("#cost").value)
     setDescription(document.querySelector("#description").value)
 
@@ -47,7 +47,7 @@ function ServiceForm({ btnText, handleSubmit, projectData }) {
         type="text"
         text="Nome do serviço"
         placeholder="Insira o nome do serviço"
-        name="name"
+        name="nameService"
         handleOnChange={handleChange}
       />
       <Input

@@ -42,13 +42,9 @@ function Project() {
 
   const toggleProjectForm = () => {
     setShowProjectForm(!showProjectForm)
-    showProjectForm === showServiceForm ? setShowServiceForm(showServiceForm): setShowServiceForm(!showServiceForm)
-    
   }
   const toggleServiceForm = () => {
     setShowServiceForm(!showServiceForm)
-    showServiceForm === showProjectForm ? setShowProjectForm(showProjectForm) : setShowProjectForm(!showProjectForm)
-    
   }
   const createService = () => {
     setMessage("")
@@ -110,10 +106,36 @@ function Project() {
       })
       .catch((err) => console.log(err))
   }
-  const removeService = () => {}
+  const removeService = (id, cost) => {
+    setMessage("")
+    const servicesUpdated = project.services.filter(
+      (service) => service.id !== id
+    )
+
+    const projectUpdated = project
+    projectUpdated.services = servicesUpdated
+
+    projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
+
+    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(projectUpdated),
+    })
+      .then((resp) => resp.json)
+      .then((data) => {
+        setProject(projectUpdated)
+        setServices(servicesUpdated)
+        setMessage("Serviço removido com sucesso.")
+        setType('success')
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <>
-    
       {project.name ? (
         <div className={styles.projectDetails}>
           {message && <Message msg={message} type={type} time="3000" />}
@@ -159,8 +181,7 @@ function Project() {
                 {!showServiceForm ? "Adicionar serviço" : "Fechar"}
               </button>
               <div className={styles.projectInfos}>
-                {showServiceForm && 
-                (
+                {showServiceForm && (
                   <ServiceForm
                     handleSubmit={createService}
                     btnText="Adicionar serviço"
@@ -179,7 +200,7 @@ function Project() {
                   services.map((service) => (
                     <ServiceCard
                       id={service.id}
-                      name={service.name}
+                      name={service.nameService}
                       cost={service.cost}
                       description={service.description}
                       key={service.id}

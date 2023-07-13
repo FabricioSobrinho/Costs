@@ -7,15 +7,8 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 1000,
-      "services": [
-        {
-          "name": "Elaboração de projeto",
-          "cost": "1000",
-          "description": "Consulta sobre a viabilidade da construção da ponte.",
-          "id": "45263232-fca1-43ab-b1fa-76ae0b54314f"
-        }
-      ],
+      "cost": 2332,
+      "services": [],
       "id": 1
     },
     {
@@ -32,25 +25,25 @@
         "id": "1",
         "name": "Infra"
       },
-      "cost": 4324,
+      "cost": 7982,
       "services": [
         {
-          "cost": "21",
-          "name": "testando tratamento ",
-          "description": "testando ",
-          "id": "343e3ff1-474c-4c91-8da6-25b1613455fc"
+          "nameService": "Eu sei eu sei",
+          "cost": "52",
+          "description": "Sou eu sou eu sou eu sou eu ",
+          "id": "3265c644-c648-4362-b93d-fe7e81588b35"
         },
         {
-          "cost": "2100",
-          "name": "Desenvolvimento de planta",
-          "description": "Contratação de um arquiteto para planejamento de projeto",
-          "id": "c9307046-6cd7-4fc4-92fa-052fc9f53a34"
+          "nameService": "Correção de bugs",
+          "cost": "1221",
+          "description": "Correção de bugs na plataforma costs",
+          "id": "3c8d6d91-059d-48dd-9682-cf3870a6ee01"
         },
         {
-          "name": "Serviço para testar a implementação dos cards",
-          "cost": "2121",
-          "description": "Estou testando a implementação da função de visualizar serviços no costs.",
-          "id": "59c60edb-9452-41c5-b85b-738f9305e709"
+          "nameService": "Implementação de features",
+          "cost": "2342",
+          "description": "O Serviço adicionou funcionalidades que antes não havia no costs",
+          "id": "c2d16462-8fad-4839-995a-5259e5a16c97"
         }
       ],
       "id": 3

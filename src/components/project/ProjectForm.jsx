@@ -11,7 +11,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
   const [categories, setCategories] = useState([])
   const [project, setProject] = useState(projectData || {})
 
-  const [visible, setVisible] = useState()
+  const [visible, setVisible] = useState(true)
   useEffect(() => {
     fetch("http://localhost:5000/categories", {
       method: "GET",
