@@ -32,4 +32,10 @@
     .homeContainer img {
         display: none;
     }
+    .homeContainer h1 {
+        text-align: center;
+    }
+    .homeContainer p {
+        text-align: center;
+    }
 }

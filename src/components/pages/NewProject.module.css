@@ -1,7 +1,9 @@
 .newProjectContainer {
-    width: 450px;
+    min-height: 100vh;
+    height: 100%;
+    width: 70%;
     margin: 0 auto;
-    padding: 3em;
+    padding: 1em;
 }
 .newProjectContainer h1 {
     margin-bottom: 0.5em;
@@ -13,4 +15,18 @@
 .formContainer {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .newProjectContainer {
+        width: 100%;
+        padding: .6em;
+    }
+    .newProjectContainer h1 {
+        margin-bottom: .2em;
+        text-align: center;
+    }
+    .newProjectContainer p {
+        display: none;
+    }
 }
