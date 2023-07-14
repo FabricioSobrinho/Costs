@@ -87,6 +87,7 @@
     height: 45vh;
     background: #333333;
     padding: 2%;
+    z-index: 9999;
     transition: .5s;
   }
   .navMobileMenu ul {

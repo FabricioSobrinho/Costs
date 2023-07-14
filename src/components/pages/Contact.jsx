@@ -7,9 +7,9 @@ function Contato() {
     <div className={styles.contactContainer}>
       <h1>Como entrar em contato conosco? </h1>
       <div className={styles.cardContainer}>
-        <div className={styles.cardContact}>{<FaFacebook />}</div>
-        <div className={styles.cardContact}>{<FaInstagram />}</div>
-        <div className={styles.cardContact}>{<FaLinkedin />}</div>
+        <div className={styles.cardContact}><FaFacebook fill="#1010ff" /></div>
+        <div className={styles.cardContact}><FaInstagram fill="#c0148f" /></div>
+        <div className={styles.cardContact}><FaLinkedin fill="#202093" /></div>
       </div>
     </div>
   )

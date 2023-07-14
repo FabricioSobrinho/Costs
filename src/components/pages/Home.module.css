@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    padding: 4em;
+    height: 100vh;
+    padding: 2em;
     margin: auto;
 }
 
@@ -24,6 +24,12 @@
     color: #7b7b7b;
 }
 .homeContainer img {
-    width: 30%;
+    width: 40%;
     margin: 2em 0;
+}
+
+@media (max-width: 500px) {
+    .homeContainer img {
+        display: none;
+    }
 }

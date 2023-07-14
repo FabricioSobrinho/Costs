@@ -93,3 +93,14 @@
 .actions svg {
     font-size: 1rem;
 }
+
+@media (max-width: 800px) {
+    .projectCard {
+        width: 40%;
+    }
+}
+@media (max-width: 500px) {
+    .projectCard {
+        width: 90%;
+    }
+}

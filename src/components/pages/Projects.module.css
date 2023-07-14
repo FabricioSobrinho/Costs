@@ -1,4 +1,5 @@
 .projectContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +7,7 @@
     min-height: 100vh;
     height: 100%;
     width: 100%;
-    padding: 2em;
+    padding: .8em;
 }
 
 .titleContainer {
@@ -21,6 +22,19 @@
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
-    width: 100%;
+    width: 100vw;
     margin: 2%;
+}
+@media (max-width: 800px) {
+    .projectsShow {
+        justify-content: center;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 600px) {
+    .titleContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
