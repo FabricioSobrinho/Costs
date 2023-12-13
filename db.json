@@ -24,6 +24,24 @@
       "cost": 47,
       "services": [],
       "id": 2
+    },
+    {
+      "name": "Obra do paulo",
+      "budget": "20000",
+      "category": {
+        "id": "3",
+        "name": "Infra"
+      },
+      "cost": 2000,
+      "services": [
+        {
+          "nameService": "reboco da parede",
+          "cost": "2000",
+          "description": "vamos rebocar a parede da casa do paulo ",
+          "id": "448355c1-0219-4ed6-96df-8de85e9df161"
+        }
+      ],
+      "id": 3
     }
   ],
   "categories": [
