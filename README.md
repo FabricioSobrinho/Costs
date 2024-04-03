@@ -7,7 +7,7 @@ Um projeto que visa criar um sistema de gerenciamento de custos em um projeto!
 ## Authors
 
 - [@FabricioSobrinho](https://www.github.com/FabricioSobrinho)
-- [@MiguelMojena](https://www.github.com/miguelmojena)
+- [@MiguelMojena](https://www.github.com/mmojena)
 
 
 ## Badges
