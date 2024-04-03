@@ -1,8 +1,10 @@
 
 # Costs
 
+
 Um projeto que visa criar um sistema de gerenciamento de custos em um projeto!
 
+<img src="./public/favicon.ico">
 
 ## Authors
 
