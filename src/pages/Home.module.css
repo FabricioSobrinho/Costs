@@ -1,0 +1,41 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2em;
+  margin: auto;
+}
+
+.homeContainer h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.homeContainer h1 span {
+  color: #ffbb33;
+  padding: 0 0.2em;
+  background-color: #222;
+}
+
+.homeContainer p {
+  margin-bottom: 1.5em;
+  color: #7b7b7b;
+}
+.homeContainer img {
+  width: 40%;
+  margin: 2em 0;
+}
+
+@media (max-width: 500px) {
+  .homeContainer img {
+    display: none;
+  }
+  .homeContainer h1 {
+    text-align: center;
+  }
+  .homeContainer p {
+    text-align: center;
+  }
+}

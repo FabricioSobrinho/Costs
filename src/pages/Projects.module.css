@@ -1,0 +1,40 @@
+.projectContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  padding: 0.8em;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2em;
+}
+.projectsShow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100vw;
+  margin: 2%;
+}
+@media (max-width: 800px) {
+  .projectsShow {
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 600px) {
+  .titleContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
