@@ -1,0 +1,26 @@
+.btn {
+  background: #222;
+  color: #ffffff;
+  padding: 1.2em;
+  text-decoration: none;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+.btn:hover {
+  background: #222;
+  color: #ffd900;
+  transition: 0.3s;
+  box-shadow: -10px 10px 1px black;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12.5vh;
+    width: 60%;
+    margin: 2%;
+  }
+}

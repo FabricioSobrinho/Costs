@@ -1,0 +1,124 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 12.5vh;
+  background: #3f3f3f;
+  box-shadow: 0px 1px 10px black;
+}
+.navMobileMenu {
+  display: none;
+}
+.openMenu {
+  display: none;
+}
+.leftNav {
+  width: 50%;
+}
+.leftNav h1 {
+  color: white;
+  margin-left: 2%;
+}
+.leftNav h1 .linkRouter {
+  text-decoration: none;
+  color: white;
+}
+.nav {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
+.nav ul {
+  width: 97%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2%;
+}
+.nav li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 10px;
+  border-radius: 1.5px;
+  margin: 3px;
+  transition: 0.3s;
+}
+
+.nav .linkRouter {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+.nav li:hover {
+  background: white;
+  transition: 0.3s;
+  box-shadow: -5px 5px 1px black;
+  transform: scale(1.01);
+}
+.nav li:hover .linkRouter {
+  color: #807500;
+  transition: 0.5s;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    display: none;
+  }
+  .openMenu {
+    position: absolute;
+    margin: 2%;
+    font-size: 2rem;
+    color: #f0f8ff;
+    right: 0;
+    display: flex;
+  }
+  .navMobileMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    color: #f0f8ff;
+    text-align: center;
+    justify-content: center;
+    width: 100vw;
+    height: 45vh;
+    background: #333333;
+    padding: 2%;
+    z-index: 9999;
+    transition: 0.5s;
+  }
+  .navMobileMenu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .navMobileMenu li {
+    display: flex;
+    justify-content: center;
+    width: 90vw;
+    list-style: none;
+    margin: 1%;
+  }
+  .navMobileMenu .linkRouter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7vh;
+    width: 100%;
+    background: #a0a0a0;
+    padding: 2%;
+    text-decoration: none;
+    color: #f0f8ff;
+  }
+  .navMobileMenu .linkRouter:hover {
+    background: #3f3f3f;
+  }
+  .closeMobileMenu {
+    font-size: 2rem;
+  }
+}
