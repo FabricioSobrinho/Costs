@@ -8,26 +8,28 @@ import { useState, useEffect } from "react";
 import Message from "../layout/Message";
 
 function ProjectForm({ btnText, handleSubmit, projectData }) {
-  const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
 
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/categories", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json()) // Adicionado o retorno da resposta json()
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const options = [
+    {
+      name: "Infra",
+      id: 1
+    },
+    {
+      name: "Desenvolvimento",
+      id: 2
+    },
+    {
+      name: "Desing",
+      id: 3
+    },
+    {
+      name: "Planejamento",
+      id: 4
+    }
+  ];
 
   const submit = (e) => {
     e.preventDefault();
@@ -41,12 +43,11 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
     }
   }
   function handleCategory(e) {
+    const category = Number(e.target.value);
+
     setProject({
       ...project,
-      category: {
-        id: e.target.value,
-        name: e.target.options[e.target.selectedIndex].text,
-      },
+      category: category
     });
   }
 
@@ -58,11 +59,11 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
             type="text"
             text="Nome do projeto"
             placeholder="Nome projeto"
-            name="name"
+            name="projectName"
             handleOnChange={handleChange}
-            value={project.name ? project.name : ""}
+            value={project.projectName ? project.projectName : ""}
           />
-          {!project.name && (
+          {!project.projectName && (
             <Message type="error" msg="Insira o nome do projeto!" />
           )}
         </div>
@@ -97,13 +98,13 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
           <Select
             name="categoryId"
             text="Selecione a categoria"
-            options={categories}
+            options={options}
             handleOnChange={handleCategory}
-            value={project.category ? project.category.id : ""}
+            value={project.category ? project.category : ""}
           />
         </div>
         <div>
-          {project.budget && project.name && !project.cost ? (
+          {project.budget && project.projectName && !project.cost ? (
             <Button text={btnText} />
           ) : visible ? (
             project.name ? (
