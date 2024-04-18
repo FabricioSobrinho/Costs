@@ -9,9 +9,10 @@ import Message from "../components/layout/Message";
 import ServiceForm from "../components/services/ServiceForm";
 import Loader from "../components/layout/Loader";
 import ServiceCard from "../components/services/ServiceCard";
+import axios from "axios";
 
 function Project() {
-  const { id } = useParams();
+  const { name } = useParams();
   const [project, setProject] = useState({});
 
   const [showProjectForm, setShowProjectForm] = useState(false);
@@ -22,19 +23,21 @@ function Project() {
   const [type, setType] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProject(data);
-        setServices(data.services);
-      })
-      .catch((err) => console.log(err));
-  }, [id]);
+    const requestProject = async () => {
+      try {
+        const projectData = await axios.get(
+          `http://localhost:5065/projects/:${name}`
+        );
+
+        setProject(projectData.data);
+        setServices(projectData.data.services);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    requestProject();
+  }, [name]);
 
   const toggleProjectForm = () => {
     setShowProjectForm(!showProjectForm);
@@ -131,12 +134,12 @@ function Project() {
 
   return (
     <>
-      {project.name ? (
+      {project.projectName ? (
         <div className={styles.projectDetails}>
           {message && <Message msg={message} type={type} time="3000" />}
           <Container customClass="column">
             <div className={styles.detailsContainer}>
-              <h1>{project.name} </h1>
+              <h1>{project.projectName} </h1>
               <hr className={styles.line} />
               <button onClick={toggleProjectForm} className={styles.btn}>
                 {!showProjectForm ? "Editar projeto" : "Fechar"}
@@ -144,10 +147,21 @@ function Project() {
               {!showProjectForm ? (
                 <div className={`${styles.projectInfos} ${styles.extra}`}>
                   <p>
-                    <span>Categoria: </span>{" "}
-                    {project.category
-                      ? project.category.name
-                      : "Categoria indefinida"}
+                    <span>Categoria: </span>
+                    {(() => {
+                      switch (project.category) {
+                        case 0:
+                          return "infra";
+                        case 1:
+                          return "desenvolvimento";
+                        case 2:
+                          return "design";
+                        case 3:
+                          return "planejamento";
+                        default:
+                          return "Categoria indefinida";
+                      }
+                    })()}
                   </p>
                   <p>
                     <span>Orçamento total: </span> R${toFixed(project.budget)}
