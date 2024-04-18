@@ -9,6 +9,8 @@ import styles from "./Projects.module.css";
 import ProjectCard from "../components/project/ProjectCard";
 import { useState, useEffect } from "react";
 
+import axios from "axios";
+
 function Projects() {
   const [projects, setProjects] = useState([]);
 
@@ -24,20 +26,17 @@ function Projects() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/projects", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProjects(data);
+    const loadProjects = async () => {
+      try {
+        const apiProjects = await axios.get("http://localhost:5065/projects");
+        setProjects((prev) => apiProjects.data);
         setLoaderRemove(true);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log(err);
-      });
+      }
+    };
+
+    loadProjects();
   }, []);
 
   function removeProject(id) {
@@ -80,14 +79,10 @@ function Projects() {
           {projects.length > 0 &&
             projects.map((project) => (
               <ProjectCard
-                name={project.name}
+                name={project.projectName}
                 id={project.id}
                 budget={project.budget}
-                category={
-                  project.category
-                    ? project.category.name
-                    : "Categoria Indefinida"
-                }
+                category={project.category}
                 key={project.id}
                 handleRemove={removeProject}
               />
