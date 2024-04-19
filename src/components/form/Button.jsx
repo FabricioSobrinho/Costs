@@ -1,9 +1,9 @@
 import styles from "./Button.module.css";
 
-function Button({ text }) {
+function Button({ text, handleClick }) {
   return (
     <div className={styles.formControl}>
-      <button>{text}</button>
+      <button onClick={handleClick}>{text}</button>
     </div>
   );
 }
