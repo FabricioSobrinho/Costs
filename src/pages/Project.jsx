@@ -7,9 +7,12 @@ import { Container } from "reactstrap";
 import ProjectForm from "../components/project/ProjectForm";
 import Message from "../components/layout/Message";
 import ServiceForm from "../components/services/ServiceForm";
+import Input from "../components/form/Input";
+
 import Loader from "../components/layout/Loader";
 import ServiceCard from "../components/services/ServiceCard";
 import axios from "axios";
+import Button from "../components/form/Button";
 
 function Project() {
   const { name } = useParams();
@@ -18,6 +21,13 @@ function Project() {
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [services, setServices] = useState([]);
+
+  const [service, setService] = useState({
+    projectName: "",
+    serviceName: "",
+    cost: 0,
+    description: "",
+  });
 
   const [message, setMessage] = useState();
   const [type, setType] = useState();
@@ -45,36 +55,37 @@ function Project() {
   const toggleServiceForm = () => {
     setShowServiceForm(!showServiceForm);
   };
-  const createService = () => {
+  const createService = async () => {
     setMessage("");
     setType("");
 
-    const lastService = project.services[project.services.length - 1];
+    try {
+      await axios.post("http://localhost:5065/services", service);
 
-    const lastServiceCost = lastService.cost;
-    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
+      const newCost = parseFloat(project.cost) + parseFloat(service.cost);
 
-    if (newCost > parseFloat(project.budget)) {
-      project.services.pop();
-      return false;
+      setProject((prevProject) => ({
+        ...prevProject,
+        cost: newCost,
+      }));
+      setServices((prevData) => [...prevData, service]);
+
+      setMessage("Serviço adicionado com sucesso!");
+      setType("success");
+      setShowServiceForm(false);
+    } catch (err) {
+      console.log(err);
+      setMessage("Ocorreu um erro ao adicionar o serviço.");
+      setType("error");
     }
-    project.cost = newCost;
+  };
 
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        setMessage("Serviço adicionado com sucesso!");
-        setType("success");
-        setShowServiceForm(false);
-      })
-      .catch((err) => console.log(err));
+  const handleChange = (e) => {
+    setService((prevData) => ({
+      ...prevData,
+      projectName: project.projectName,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const toFixed = (value) => {
@@ -89,7 +100,7 @@ function Project() {
   const editPost = (project) => {
     setMessage("");
     fetch(`http://localhost:5000/projects/${id}`, {
-      method: "PATCH", //metodo para atualizar os dados
+      method: "PATCH",
       headers: {
         "Content-type": "application/json",
       },
@@ -104,32 +115,33 @@ function Project() {
       })
       .catch((err) => console.log(err));
   };
-  const removeService = (id, cost) => {
+
+  const removeService = async (name, cost) => {
     setMessage("");
-    const servicesUpdated = project.services.filter(
-      (service) => service.id !== id
-    );
 
-    const projectUpdated = project;
-    projectUpdated.services = servicesUpdated;
+    try {
+      const response = await axios.delete(
+        `http://localhost:5065/services/:${name}`
+      );
 
-    projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+      if (response.status === 200) {
+        const servicesUpdated = project.services.filter(
+          (service) => service.serviceName !== name
+        );
 
-    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(projectUpdated),
-    })
-      .then((resp) => resp.json)
-      .then((data) => {
+        const projectUpdated = { ...project };
+        projectUpdated.services = servicesUpdated;
+        projectUpdated.cost =
+          parseFloat(projectUpdated.cost) - parseFloat(cost);
+
         setProject(projectUpdated);
         setServices(servicesUpdated);
         setMessage("Serviço removido com sucesso.");
         setType("success");
-      })
-      .catch((err) => console.log(err));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -192,12 +204,33 @@ function Project() {
               </button>
               <div className={styles.projectInfos}>
                 {showServiceForm && (
-                  <ServiceForm
-                    handleSubmit={createService}
-                    btnText="Adicionar serviço"
-                    projectData={project}
-                    maxValueService={project.budget}
-                  />
+                  <>
+                    <Input
+                      type="text"
+                      text="Nome do serviço"
+                      placeholder="Insira o nome do serviço"
+                      name="serviceName"
+                      handleOnChange={handleChange}
+                    />
+                    <Input
+                      type="number"
+                      text="Custo do serviço"
+                      placeholder="Insira o custo do serviço"
+                      name="cost"
+                      handleOnChange={handleChange}
+                    />
+                    <Input
+                      type="text"
+                      text="Descrição do serviço"
+                      placeholder="Descreva o serviço"
+                      name="description"
+                      handleOnChange={handleChange}
+                    />
+                    <Button
+                      handleClick={createService}
+                      text={"Adicionar serviço"}
+                    />
+                  </>
                 )}
               </div>
             </div>
@@ -210,7 +243,7 @@ function Project() {
                   services.map((service) => (
                     <ServiceCard
                       id={service.id}
-                      name={service.nameService}
+                      name={service.serviceName}
                       cost={service.cost}
                       description={service.description}
                       key={service.id}
