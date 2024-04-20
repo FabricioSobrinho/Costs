@@ -4,9 +4,10 @@ import Input from "../form/Input";
 import Select from "../form/Select";
 import Button from "../form/Button";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Message from "../layout/Message";
 
+// eslint-disable-next-line react/prop-types
 function ProjectForm({ btnText, handleSubmit, projectData }) {
   const [project, setProject] = useState(projectData || {});
 
@@ -104,7 +105,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
           />
         </div>
         <div>
-          {project.budget && project.projectName && !project.cost ? (
+          {project.budget && project.projectName ? (
             <Button text={btnText} />
           ) : visible ? (
             project.name ? (
