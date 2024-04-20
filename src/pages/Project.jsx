@@ -6,7 +6,6 @@ import { Container } from "reactstrap";
 
 import ProjectForm from "../components/project/ProjectForm";
 import Message from "../components/layout/Message";
-import ServiceForm from "../components/services/ServiceForm";
 import Input from "../components/form/Input";
 
 import Loader from "../components/layout/Loader";
@@ -97,23 +96,24 @@ function Project() {
     }
   };
 
-  const editPost = (project) => {
+  const editPost = async (updateProject) => {
     setMessage("");
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProject(data);
-        setShowProjectForm(false);
-        setMessage("Projeto atualizado com sucesso!");
-        setType("success");
-      })
-      .catch((err) => console.log(err));
+
+    try {
+      const response = await axios.put(
+        `http://localhost:5065/projects/:${project.projectName}`,
+        updateProject
+      );
+
+      setProject(response.data);
+      setShowProjectForm(false);
+      setMessage("Projeto atualizado com sucesso!");
+      setType("success");
+
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const removeService = async (name, cost) => {
