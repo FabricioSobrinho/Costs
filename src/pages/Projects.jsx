@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Message from "../components/layout/Message";
 import { useLocation } from "react-router-dom";
 import LinkButton from "../components/layout/LinkButton";
@@ -39,28 +40,20 @@ function Projects() {
     loadProjects();
   }, []);
 
-  function removeProject(id) {
+  const removeProject = async (name) => {
     setProjectMessage("");
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: "delete",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then(() => {
-        setProjects(
-          projects.filter((project) => {
-            return project.id !== id;
-          })
-        );
-        setProjectMessage("Projeto removido com sucesso!");
-        Location.reload(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    try {
+      const updateProjects = projects.filter(
+        (project) => project.projectName != name
+      );
+      
+      await axios.delete(`http://localhost:5065/projects/:${name}`);
+      setProjectMessage("Projeto deletado!");
+      setProjects(updateProjects);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.projectContainer}>
