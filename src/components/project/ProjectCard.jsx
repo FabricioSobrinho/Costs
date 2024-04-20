@@ -3,23 +3,24 @@ import styles from "./ProjectCard.module.css";
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 function ProjectCard({ id, name, budget, category, handleRemove }) {
   const remove = (e) => {
     e.preventDefault();
-    handleRemove(id);
+    handleRemove(name);
   };
 
   switch (category) {
-    case 0:
+    case 1:
       category = "infra";
       break;
-    case 1:
+    case 2:
       category = "desenvolvimento";
       break;
-    case 2:
+    case 3:
       category = "design";
       break;
-    case 3:
+    case 4:
       category = "planejamento";
       break;
     default:
